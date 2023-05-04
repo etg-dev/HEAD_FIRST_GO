@@ -47,6 +47,17 @@
 - [Init and post statements are optional](#statements_are_optional)
 - [Create guessing game](#create_guessing_game)
 
+### Chapter 3
+
+- [Formatting output with Printf and Sprintf](#formatting_output)
+- [Declaring functions](#declaring_functions)
+- [Functions and variable scope](#functions_and_variable_scope)
+- [Error values](#error_values)
+- [Function parameters receive copies of the arguments](#copies_of_the_arguments)
+- [Pointers](#pointers)
+- [Pointer types](#pointer_types)
+- [Using pointers with functions](#using_pointers_with_functions)
+
 ---
 
 <div id="ready_set_go" />
@@ -544,3 +555,132 @@ func main() {
   }
 }
 ```
+
+---
+
+<div id="formatting_output" />
+
+## Formatting output with Printf and Sprintf
+
+The Sprintf function work just like printf, except that it returns a formatted string instead of print it
+
+- Formatting verbs (the %0.2 in the strings above is a verb)
+- Value width (that the 0.2 in the middle of the verb)
+
+`verb output`
+`%f Floating-point number`
+`%s String`
+`%t Boolean (true or false)`
+`%v Any value (choosen an approprate format based the supplied value type)`
+`%#v Any value, formatted as it would appear in Go program code`
+`%T Type of the supplied value (int string etc)`
+
+---
+
+<div id="declaring_functions" />
+
+## Declaring functions
+
+A simple function declaration might look like this
+
+```go
+func sayHi() {
+  fmt.Println("Hi")
+}
+```
+
+A declaration begins with the func keyword followed by the name want the function
+to have
+
+The rules for variable names:
+
+- A name must begin with a **capital letter are expoted**
+
+- Names with multiple words should use camelcase
+
+---
+
+<div id="functions_and_variable_scope" />
+
+## Functions and variable scope
+
+As with conditional and loop blocks, within function block are only in scope within that function blocks. variable at the package level access it within any function that package
+
+---
+
+<div id="error_values" />
+
+## Error values
+
+If you need to format numbers or other values for use in your error message, you can use the fmt.Errorf() or you can use built in error package in Go which is take message and return error, error.New()
+
+---
+
+<div id="declaring_multiple_return_values" />
+
+## Declaring multiple return values
+
+To declare multiple return values for a function, place the return types in a second set of paranthese in the function declaration
+
+You can also specify a name for return type of value it make the purpose of the return values clearer, The main purpose of named return values is as documentation for programming reading the code.
+
+---
+
+<div id="copies_of_the_arguments" />
+
+## Function parameters receive copies of the arguments
+
+When you call a function that has parameters declared, you need to provide arguments to the call. The value in each argument is copied to the corresponding parameter variable. pass by value
+
+Go is a pass-by-value language fucntion parameters receive a copy of the arguments from the function call
+
+---
+
+<div id="pointers" />
+
+## Pointers
+
+You can get the address of a variable using & which is Go s address of operator
+We can get address for variables of any type. Notice that the address diffres for each variable
+
+Values that represent the address of a variable are known as pointers, because they point to the location where the variable can be found
+
+---
+
+<div id="pointer_types" />
+
+## Pointer types
+
+The type of a pointer is written with * symbol for example *int you can read that aloud as ponter int
+
+A pointer variable can only hold ponters to one type of value, so a variable might only hold *int ponters, only *float64 and so on
+
+```go
+var myBool bool
+myBoolPointer := & myBool
+fmt.Println(myBoolPointer) // address of myBool value
+```
+
+---
+
+<div id="using_pointers_with_functions" />
+
+## Using pointers with functions
+
+Its possible to return pointer from function, just declare that the fucntion return type is a pointer type
+
+```go
+func createPonter () *float64 {
+  var myFloat = 98.5
+  return &myFloat
+}
+
+func main(){
+  var myFloatPointer *float64 = createPonter()
+  fmt.Println(&myFloatPointer)
+}
+```
+
+Its okey to return a ponter to a variable that local to a function. Even though that variable is no longer is scope, as long as you still have the pointer, Go will ensure you can still access the value
+
+---
