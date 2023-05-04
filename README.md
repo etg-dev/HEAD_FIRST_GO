@@ -1,8 +1,10 @@
-# Briefly Explore To Book
+# Brief of Head_First_Go
 
+<br />
 <p align="center">
-  <img src="go-lang-intro-image.png" />
+  <img src="headfirst.png" />
 </p>
+<br />
 
 ## Your brain on Go
 
